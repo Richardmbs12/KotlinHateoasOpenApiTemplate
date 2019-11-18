@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>kotlin-hateoas-configuration</artifactId>
+    <groupId>com.github.richardmbs12</groupId>
+    <version>1.0.0-SNAPSHOT</version>
+
+    <name>Payment Gateway Open Api Generator Configuration</name>
+
+    <properties>
+        <openapi-generator.version>4.2.1</openapi-generator.version>
+    </properties>
+
+    <build>
+        <plugins>
+            <!-- Open API Generator Maven Plugin -->
+            <plugin>
+                <groupId>org.openapitools</groupId>
+                <artifactId>openapi-generator-maven-plugin</artifactId>
+                <version>${openapi-generator.version}</version>
+                <executions>
+                    <execution>
+                        <id>kotlin-client</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>accounts-demo-openapi.yaml</inputSpec>
+                            <ignoreFileOverride>${project.basedir}</ignoreFileOverride>
+                            <generatorName>kotlin</generatorName>
+                            <templateDirectory>kotlin-client</templateDirectory>
+                            <configurationFile>gen-config.yaml</configurationFile>
+                            <output>kotlin-android-model-accounts-demo</output>
+                            <generateSupportingFiles>true</generateSupportingFiles>
+                            <generateApis>true</generateApis>
+                            <generateApiDocumentation>true</generateApiDocumentation>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>accounts-demo-server</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>accounts-demo-openapi.yaml</inputSpec>
+                            <apiPackage>com.github.richardmbs12.demo.domain.controller</apiPackage>
+                            <modelPackage>com.github.richardmbs12.demo.domain.model</modelPackage>
+                            <ignoreFileOverride>${project.basedir}</ignoreFileOverride>
+                            <generatorName>spring</generatorName>
+                            <output>java-spring-model-accounts-demo</output>
+                            <configOptions>
+                                <sourceFolder>generated-sources</sourceFolder>
+                                <java8>true</java8>
+                                <hideGenerationTimestamp>true</hideGenerationTimestamp>
+                                <hateoas>true</hateoas>
+                            </configOptions>
+                            <generateSupportingFiles>false</generateSupportingFiles>
+                            <generateApis>false</generateApis>
+                            <generateApiDocumentation>false</generateApiDocumentation>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

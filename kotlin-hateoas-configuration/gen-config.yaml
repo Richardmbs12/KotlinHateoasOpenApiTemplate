@@ -1,0 +1,4 @@
+dateLibrary: java8
+groupId: com.github.richardmbs12.model.android
+artifactId: android-model-accounts-demo
+artifactVersion: 1.0.0
